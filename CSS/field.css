@@ -1,0 +1,55 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #333;
+	min-width: 800px;
+	min-height: 500px;
+}
+
+.field {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 484px;
+	height: 484px;
+	border: 2px solid #201509;
+	border-collapse: collapse;
+	margin-left: -242px;
+	margin-top: -242px;
+}
+
+td {
+	width: 60px;
+	height: 60px;
+}
+
+td.black {
+	background-color: #be7f37;
+}
+
+td.white {
+	background-color: #ffe3c2;
+}
+
+
+/********* Клетка с моей шашкой **********/
+td.me {
+	background: #be7f37 url(draw/yellow.png) 50% 50% no-repeat;
+	cursor: pointer;
+}
+
+/******** Клетка с шашкой противника *******/
+
+td.enemy {
+	background: #be7f37 url(draw/orange.png) 50% 50% no-repeat;
+}
+
+/********** Свободная клетка **********/
+
+td.free {
+	background-color: green;
+	cursor: pointer;
+}
