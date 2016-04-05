@@ -100,20 +100,24 @@ var Field = function(element, isPlayer) {
 	 *	frontLeft - передняя левая клетка
 	 */
 	deck.isKill = function(chipId, frontRight, frontLeft) {
+		var kill = false;
 		if($(frontRight).hasClass('enemy') && 
 			!deck.isBusy('#' + (deck.getRow(chipId) + 2) + '-' + (deck.getCol(chipId) + 2))) { //Если спереди справа
-			return deck.addKillCell('#' + (deck.getRow(chipId) + 2) + '-' + (deck.getCol(chipId) + 2));
-		} else if($(frontLeft).hasClass('enemy') && 
-			!deck.isBusy('#' + (deck.getRow(chipId) + 2) + '-' + (deck.getCol(chipId) - 2))) { //Если спереди слева
-			return deck.addKillCell('#' + (deck.getRow(chipId) + 2) + '-' + (deck.getCol(chipId) - 2));
-		} else if($('#' + (deck.getRow(chipId) - 1) + '-' + (deck.getCol(chipId) + 1)).hasClass('enemy') && 
-			!deck.isBusy('#' + (deck.getRow(chipId) - 2) + '-' + (deck.getCol(chipId) + 2))) { //Если сздаи справа
-			return deck.addKillCell('#' + (deck.getRow(chipId) - 2) + '-' + (deck.getCol(chipId) + 2));
-		} else if ($('#' + (deck.getRow(chipId) - 1) + '-' + (deck.getCol(chipId) - 1)).hasClass('enemy') && 
-			!deck.isBusy('#' + (deck.getRow(chipId) - 2) + '-' + (deck.getCol(chipId) - 2))) { //Если сзади слева
-			return deck.addKillCell('#' + (deck.getRow(chipId) - 2) + '-' + (deck.getCol(chipId) - 2));
+			kill = deck.addKillCell('#' + (deck.getRow(chipId) + 2) + '-' + (deck.getCol(chipId) + 2));
 		}
-		return false;
+		if($(frontLeft).hasClass('enemy') && 
+			!deck.isBusy('#' + (deck.getRow(chipId) + 2) + '-' + (deck.getCol(chipId) - 2))) { //Если спереди слева
+			kill = deck.addKillCell('#' + (deck.getRow(chipId) + 2) + '-' + (deck.getCol(chipId) - 2));
+		}
+		if($('#' + (deck.getRow(chipId) - 1) + '-' + (deck.getCol(chipId) + 1)).hasClass('enemy') && 
+			!deck.isBusy('#' + (deck.getRow(chipId) - 2) + '-' + (deck.getCol(chipId) + 2))) { //Если сздаи справа
+			kill = deck.addKillCell('#' + (deck.getRow(chipId) - 2) + '-' + (deck.getCol(chipId) + 2));
+		}
+		if ($('#' + (deck.getRow(chipId) - 1) + '-' + (deck.getCol(chipId) - 1)).hasClass('enemy') && 
+			!deck.isBusy('#' + (deck.getRow(chipId) - 2) + '-' + (deck.getCol(chipId) - 2))) { //Если сзади слева
+			kill = deck.addKillCell('#' + (deck.getRow(chipId) - 2) + '-' + (deck.getCol(chipId) - 2));
+		}
+		return kill;
 	}
 
 	/*	Добавляем к свободной ячейке за противником класс kill
