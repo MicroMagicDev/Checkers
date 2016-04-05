@@ -23,8 +23,9 @@ var Field = function(element, isPlayer) {
 			}
 		}
 		$('#5-5').addClass('enemy');
+		$('#5-3').addClass('enemy');
+		$('#7-3').addClass('enemy');
 		$('#7-5').addClass('enemy');
-		$('#6-2').addClass('enemy');
 		deck.setPlayerChips();
 		deck.setOnClick();
 	}
